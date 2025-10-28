@@ -28,7 +28,19 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+STATIC_URL = 'static/'
 
+# El directorio donde collectstatic pondrá los archivos para producción
+STATIC_ROOT = BASE_DIR / 'staticfiles' 
+
+# AÑADE ESTO:
+# El directorio donde collectstatic buscará tus archivos locales
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]
+
+# Configuración de WhiteNoise (que ya deberías tener)
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # Application definition
 
 INSTALLED_APPS = [
