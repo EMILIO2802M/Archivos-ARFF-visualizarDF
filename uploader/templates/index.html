@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualizador de Archivos ARFF</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Visualizador de Archivos ARFF</h1>
+        <p>Sube un archivo arff para mostrar su contenido como una tabla.</p>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file" name="arff_file" accept=".arff" required>
+            <button type="submit">Subir y visualizar</button>
+        </form>
+
+        {% if error_message %}
+            <p class="error">{{ error_message }}</p>
+        {% endif %}
+
+        {% if accuracy %}
+            <h2>Accuracy del modelo: {{ accuracy }}</h2>
+        {% endif %}
+
+        {% if dataframe_html %}
+            <div class="table-container">
+                <h2>Contenido del archivo:</h2>
+                {{ dataframe_html|safe }}
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
